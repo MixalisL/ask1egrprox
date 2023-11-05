@@ -1,8 +1,6 @@
 #include <stdio.h>
 #define N 3
-
-
-int x=0;
+int x=0, metr=0;
 int main();
 struct filmain
 {
@@ -11,22 +9,33 @@ struct filmain
     char title[25];
 };
 struct filmain filmdata[N];
+void arxikop(){
+    for ( int i = 0; i <=N; i++)
+    {
+        filmdata[i].code=0;
+
+    }
+    printf("test arxikopoiish");
+    
+}
 
 void add(){
-    printf("test add");
+    int r_value;
+    printf("test add\n");
     int f_code;
-        printf("givec code ");
-        scanf("%d",&f_code);
-        if(f_code == filmdata[x].code){
-            filmdata[x].code = f_code;
-            if(filmdata[x].code==0){
+    printf("give a code ");
+    scanf("%d",&f_code);
+    existance(f_code,r_value);
+    if(r_value == 0){       
                 printf("give film name \n");
                 scanf("%s", filmdata[0].title);
                 printf("give year \n");
                 scanf("%d",&filmdata[0].year);
             }   
-        }
-    main();
+    else{
+        printf("this file exist");
+    }
+   main();
 }
 void read(){
     int s_code; 
@@ -65,7 +74,7 @@ void delete(){
      if (s_code == filmdata[x].code){
         filmdata[x].code=0;
         filmdata[x].year=0;
-        filmdata[x].title[25] = " ";
+        ///filmdata[x].title[25] = " ";
         printf("film deleted");
         }
     else{
@@ -73,17 +82,25 @@ void delete(){
             printf("film doesn't exist");
         }
     }
-    main();
 } 
-int main(){
-    for ( int i = 0; i <=N; i++)
+void existance(int f_code,int r_value){
+    r_value=0;
+    for (int i = 0; i <= N; i++)
     {
-        filmdata[i].code=0;
+        if(f_code ==filmdata[i].code && r_value==0){
+             r_value=1;
+        }
+    }   
+}
+int main(){
+    if(metr == 0){
+        metr++;
+        arxikop();
     }
     
     char entolh;
-    printf("\ngive order");
-    scanf("%s\n",&entolh);
+    printf("\ngive order ");
+    scanf("%s",&entolh);
     if(entolh == 'a'){
         if(x<N){
             x++;
