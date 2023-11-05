@@ -12,7 +12,7 @@ void add(){
     for(int i=0;i<=N;i++){
         int f_code;
         printf("givec code");
-        scanf("%d",f_code);
+        scanf("%d",&f_code);
         if(f_code != filmdata[i].code){
             filmdata[i].code = f_code;
             if(filmdata[i].code=0){
@@ -73,24 +73,25 @@ void delete(){
         }
     }  
 }
-static int main(){
-    char entolh[7];
+int main(){
+    char entolh;
     printf("give order");
     scanf("%s",&entolh);
-    if(entolh == "add"){
+    if(entolh == 'a'){
         add();}
-    else if (entolh =="read")
+    else if (entolh =='r')
      {
         read();
     }
-    else if(entolh=="update")
+    else if(entolh=='u')
     { 
         update();
     }
-    else if(entolh=="delete"){
+    else if(entolh=='d'){
         delete();
     }  
     else{
         printf("This ordes doesn't exist");
     } 
+    return 0;
 }
