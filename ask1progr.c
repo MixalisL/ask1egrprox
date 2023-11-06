@@ -18,21 +18,31 @@ void arxikop(){
     printf("test arxikopoiish");
     
 }
-
+void existance(int f_code,int r_value){
+    printf("test existance:%d\n ",filmdata[0].code);
+    for (int i = 0; i <= N; i++)
+    {
+        if(filmdata[i].code==f_code  /*&& r_value==0*/){
+             r_value=1;
+             printf("%d\n", r_value);
+        }
+    }   
+}
 void add(){
-    int r_value;
+    int r_value=0;
     printf("test add\n");
     int f_code;
     printf("give a code ");
     scanf("%d",&f_code);
-    existance(f_code,r_value);
+    existance( f_code,r_value);
     if(r_value == 0){       
-                printf("give film name \n");
-                scanf("%s", filmdata[0].title);
-                printf("give year \n");
-                scanf("%d",&filmdata[0].year);
+                printf("give film name ");
+                scanf("%s",filmdata[x].title);
+                printf("give year ");
+                scanf("%d",&filmdata[x].year);
             }   
-    else{
+    else if (r_value==1)
+    {
         printf("this file exist");
     }
    main();
@@ -83,15 +93,6 @@ void delete(){
         }
     }
 } 
-void existance(int f_code,int r_value){
-    r_value=0;
-    for (int i = 0; i <= N; i++)
-    {
-        if(f_code ==filmdata[i].code && r_value==0){
-             r_value=1;
-        }
-    }   
-}
 int main(){
     if(metr == 0){
         metr++;
