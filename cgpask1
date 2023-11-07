@@ -1,0 +1,120 @@
+#include <stdio.h>
+#define N 3
+
+struct filmain {
+    int code;
+    int year;
+    char title[25];
+};
+
+struct filmain filmdata[N];
+int x = 0;
+
+void existance(int f_code, int *r_value, int *place);
+void add();
+void read();
+void update();
+void delete();
+
+int main(void) {
+    char entolh;
+
+    while (1) {
+        printf("\nGive order: ");
+        scanf(" %c", &entolh);
+
+        if (entolh == 'a') {
+            if (x < N) {
+                add();
+            } else {
+                printf("The list is full\n");
+            }
+        } else if (entolh == 'r') {
+            read();
+        } else if (entolh == 'u') {
+            update();
+        } else if (entolh == 'd') {
+            delete();
+        } else if (entolh == 'q') {
+            break;
+        } else {
+            printf("This order doesn't exist. Try again.\n");
+        }
+    }
+
+    return 0;
+}
+
+void existance(int f_code, int *r_value, int *place) {
+    for (int i = 0; i < N; i++) {
+        if (filmdata[i].code == f_code) {
+            *r_value = 1;
+            *place = i;
+            break;
+        }
+    }
+}
+
+void add() {
+    int place = 0;
+    int r_value = 0;
+
+    int f_code;
+    printf("Give a code: ");
+    scanf("%d", &f_code);
+
+    existance(f_code, &r_value, &place);
+
+    if (r_value == 0) {
+        filmdata[x].code = f_code;
+        printf("Give film name: ");
+        scanf("%s", filmdata[x].title);
+        printf("Give year: ");
+        scanf("%d", &filmdata[x].year);
+        x++;
+    } else {
+        printf("This film already exists.\n");
+    }
+}
+
+void read() {
+    for (int i = 0; i < x; i++) {
+        printf("%s %5d\n", filmdata[i].title, filmdata[i].year);
+    }
+}
+
+void update() {
+    int s_code;
+    printf("Enter the code of the film you want to update: ");
+    scanf("%d", &s_code);
+
+    for (int i = 0; i < x; i++) {
+        if (s_code == filmdata[i].code) {
+            printf("Film found. Enter new year: ");
+            scanf("%d", &filmdata[i].year);
+            printf("Film updated.\n");
+            return;
+        }
+    }
+
+    printf("Film not found.\n");
+}
+
+void delete() {
+    int s_code;
+    int r_value = 0;
+    int place = 0;
+
+    printf("Enter the code of the film you want to delete: ");
+    scanf("%d", &s_code);
+
+    existance(s_code, &r_value, &place);
+
+    if (r_value == 1) {
+        filmdata[place].code = 0;
+        filmdata[place].year = 0;
+        printf("Film deleted.\n");
+    } else {
+        printf("Film not found.\n");
+    }
+}
